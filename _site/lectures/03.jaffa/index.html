@@ -17,21 +17,21 @@
 
   <!-- CSS -->
     <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/lanyon.css">
-  <link rel="stylesheet" href="/public/css/styles.css">
+  <link rel="stylesheet" href="/training_fusion/public/css/poole.css">
+  <link rel="stylesheet" href="/training_fusion/public/css/syntax.css">
+  <link rel="stylesheet" href="/training_fusion/public/css/lanyon.css">
+  <link rel="stylesheet" href="/training_fusion/public/css/styles.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/training_fusion/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/training_fusion/public/favicon.ico">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="/js/toc.js"></script>
+  <script src="/training_fusion/js/toc.js"></script>
 </head>
 
 
@@ -48,7 +48,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="/">Home</a>
+    <a class="sidebar-nav-item" href="/training_fusion/">Home</a>
 
     
 
@@ -62,25 +62,25 @@
     
       
         
-          <a class="sidebar-nav-item" href="https://bioinfo-dirty-jobs.github.io/training_fusion//lectures/01.welcome/">Welcome and introduction</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/lectures/01.welcome/">Welcome and introduction</a>
         
       
     
       
         
-          <a class="sidebar-nav-item" href="https://bioinfo-dirty-jobs.github.io/training_fusion//lectures/02.setup_tutorial/">General installation for Fusion detection tutorial</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/lectures/02.setup_tutorial/">General installation for Fusion detection tutorial</a>
         
       
     
       
         
-          <a class="sidebar-nav-item active" href="https://bioinfo-dirty-jobs.github.io/training_fusion//lectures/03.jaffa/">Jaffa configuration</a>
+          <a class="sidebar-nav-item active" href="http://localhost:4000/lectures/03.jaffa/">Jaffa configuration</a>
         
       
     
       
         
-          <a class="sidebar-nav-item" href="https://bioinfo-dirty-jobs.github.io/training_fusion//lectures/06.fusioncather/">Fusioncather</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/lectures/06.fusioncather/">Fusioncather</a>
         
       
     
@@ -104,7 +104,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="https://bioinfo-dirty-jobs.github.io/training_fusion//" title="Home">Training Course on Fusion transcript detection</a>
+            <a href="http://localhost:4000/" title="Home">Training Course on Fusion transcript detection</a>
             <!--<p></p><small>Jaffa configuration</small></p>-->
           </h3>
         </div>
@@ -183,11 +183,11 @@ When to use which mode?</p>
 
 <p>Bpipe will giving you information about each stage in the pipeline as it run it. Let go through these in some detail.</p>
 
-<p>** Stage run_check <strong>- This checks that all the required software is installed. If bpipe fails here, you may need to double check the installation.
+<p><strong>Stage run_check</strong>- This checks that all the required software is installed. If bpipe fails here, you may need to double check the installation.
 Next bpipe with create two branches, one for each sample set. In the case of this demo, there will be one for MCF-7 and one for BTF-7. These branches will be run in parallel. You can control the number of branches running in parallel with the bpipe -n option. For each branch, these stages are run:
-**Stage make_dir_using_fastq_names.</strong> Create a directory for each sample.
+<strong>Stage make_dir_using_fastq_names.</strong>  Create a directory for each sample.
 ** Stage prepare_reads ** Now you will see that bpipe is running Trimmomatic. With JAFFA’s default setting, no trimming is actually performed, but the fastq files will be unzipped. It is possible to control the amount of trimming. See JAFFA_stages.groovy. During this step you may also see that JAFFA is mapping reads. This is used to filter out any pairs which map to intronic or intergenic regions, or chrM.
-** Stage run_assembly.** Next the reads will be assembled. The assembly involved running velveth, velvetg then oases, 6 times: once for each kmer 19, 23, 27,31 and 35, and these once to merge. If something goes wrong with the pipeline, it is often during this stage. For example you will need to ensure that your machine has enough RAM (especially if you are running samples in parallel). The assembly can be adjusted in the JAFFA script assemble.sh. In this demo the assembly will be fast, but in practice this stage can take a long time.
+<strong>Stage run_assembly.</strong> Next the reads will be assembled. The assembly involved running velveth, velvetg then oases, 6 times: once for each kmer 19, 23, 27,31 and 35, and these once to merge. If something goes wrong with the pipeline, it is often during this stage. For example you will need to ensure that your machine has enough RAM (especially if you are running samples in parallel). The assembly can be adjusted in the JAFFA script assemble.sh. In this demo the assembly will be fast, but in practice this stage can take a long time.
 <strong>Stage align_transcripts_to_annotation.</strong> The assembled contigs will then be aligned to the reference transcriptome (GENCODE by default). BLAT is used for this.
 <strong>Stage filter_transcripts.</strong> Preliminary filtering will be performed (this uses an R script).
 <strong>Stage extract_fusion_sequences.</strong> The fasta sequences of the preliminary candidate will be extracted
@@ -214,6 +214,21 @@ Next bpipe with create two branches, one for each sample set. In the case of thi
 <p>This is a combination of the previous two modes. First JAFFA will call Velvet and Oases to assemble the reads. It will then search for fusions from amongst the assembled contigs. Next it will map reads to both the known reference transcriptome and the assembled transcriptome. It will then search for fusions from amongst the unmapped reads.</p>
 
 <h4 id="tutorial-with-data">Tutorial with data</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>source /opt/conda/bin/activate
+export JAFFA_REF_BASE=/nfs/fusion/JAFFA/
+
+cd /home/um49/fusion/tutorial-fusion-transcript-2017/Result/Jaffa_BT474
+  
+jaffa-assembly ~/fusion/tutorial-fusion-transcript-2017/RAW/BT474-demo_*.fastq.gz
+
+
+
+
+
+
+</code></pre>
+</div>
 
 
 </div>

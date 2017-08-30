@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Training Course on Fusion transcript detection</title>
- <link href="https://bioinfo-dirty-jobs.github.io/training_fusion//atom.xml" rel="self"/>
- <link href="https://bioinfo-dirty-jobs.github.io/training_fusion//"/>
- <updated>2017-08-29T10:16:56+02:00</updated>
- <id>https://bioinfo-dirty-jobs.github.io/training_fusion/</id>
+ <link href="http://localhost:4000/training_fusion/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/training_fusion/"/>
+ <updated>2017-08-30T10:43:04+02:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name></name>
    <email></email>
