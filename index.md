@@ -4,7 +4,7 @@ title: Home
 ---
 
 ## Welcome to my tutorial          
-## [Training Course on RNA fusion detetections](www.google.com/fusion)
+## [Training Course on RNA fusion detetections](https://bioinfo-dirty-jobs.github.io/training_fusion/)
 
 ___
 
